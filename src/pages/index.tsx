@@ -27,6 +27,7 @@ import {
   DEFAULT_EIP7715_METHODS,
   DEFAULT_SUI_METHODS,
   DEFAULT_STACKS_METHODS,
+  ASSETS_PREFIX,
 } from "../constants";
 import { AccountAction, setLocaleStorageTestnetFlag } from "../helpers";
 import Toggle from "../components/Toggle";
@@ -704,7 +705,7 @@ const Home: NextPage = () => {
             <OriginSimulationDropdown origin={origin} show={openSelect} />
           </SDropDownContainer>
           <button onClick={openDropdown} style={{ background: "transparent" }}>
-            <Icon size={30} src={"/assets/settings.svg"} />
+            <Icon size={30} src={`${ASSETS_PREFIX}/settings.svg`} />
           </button>
         </SButtonContainer>
       </SLanding>

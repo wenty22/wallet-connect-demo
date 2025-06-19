@@ -1,3 +1,4 @@
+import { ASSETS_PREFIX } from "../constants";
 import { NamespaceMetadata, ChainMetadata, ChainsMap } from "../helpers";
 
 export const SUI_MAINNET = "mainnet";
@@ -30,15 +31,15 @@ export const SuiChainData: ChainsMap = {
 
 export const SuiMetadata: NamespaceMetadata = {
   [SUI_MAINNET]: {
-    logo: "/assets/sui.png",
+    logo: `${ASSETS_PREFIX}/sui.png`,
     rgb: "6, 135, 245",
   },
   [SUI_TESTNET]: {
-    logo: "/assets/sui.png",
+    logo: `${ASSETS_PREFIX}/sui.png`,
     rgb: "6, 135, 245",
   },
   [SUI_DEVNET]: {
-    logo: "/assets/sui.png",
+    logo: `${ASSETS_PREFIX}/sui.png`,
     rgb: "6, 135, 245",
   },
 };

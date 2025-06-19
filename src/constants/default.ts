@@ -51,6 +51,7 @@ export const DEFAULT_CHAINS = [...DEFAULT_MAIN_CHAINS, ...DEFAULT_TEST_CHAINS];
 
 export const DEFAULT_PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID;
 export const DEFAULT_RELAY_URL = process.env.NEXT_PUBLIC_RELAY_URL;
+export const ASSETS_PREFIX = `${process.env.NEXT_PUBLIC_ASSETS_PREFIX || ''}/assets`
 
 export const DEFAULT_LOGGER = "debug";
 

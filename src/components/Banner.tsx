@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { ASSETS_PREFIX } from "../constants";
 
 const SBannerWrapper = styled.div`
   display: flex;
@@ -10,7 +11,7 @@ const SBannerWrapper = styled.div`
 const SBanner = styled.div`
   width: 275px;
   height: 45px;
-  background: url(/assets/walletconnect.png) no-repeat;
+  background: url(${ASSETS_PREFIX}/walletconnect.png) no-repeat;
   background-size: cover;
   background-position: center;
 `;

@@ -5,7 +5,7 @@ import { SessionTypes } from "@walletconnect/types";
 import { fonts, responsive } from "../styles";
 import Button from "./Button";
 import Icon from "./Icon";
-import { DEFAULT_GITHUB_REPO_URL } from "../constants";
+import { ASSETS_PREFIX, DEFAULT_GITHUB_REPO_URL } from "../constants";
 
 const SHeader = styled.div`
   margin-top: -1px;
@@ -77,7 +77,7 @@ const Header = (props: HeaderProps) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Icon size={24} src={"/assets/githubLogo.svg"} />
+                <Icon size={24} src={`${ASSETS_PREFIX}/githubLogo.svg`} />
               </a>
             </GithubLogoContainer>
             <Button outline color="black" onClick={ping}>
