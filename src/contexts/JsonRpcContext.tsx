@@ -2288,31 +2288,29 @@ export function JsonRpcContextProvider({
         tx.setSender(address);
         tx.transferObjects([coin], recipient?.trim() || address);
 
-        // const serialized = await tx.toJSON();
-        const serialized = await tx.build({ client: suiClient })
-
-        const req = {
-          transaction: Buffer.from(serialized).toString("base64"),
-          address,
-        };
-
+        const txBase64 = toBase64(await tx.build({ client: suiClient }))
         const params = {
           topic: session!.topic,
           chainId: chainId,
           request: {
             method,
-            params: req,
+            params: {
+              transaction: txBase64,
+              address,
+              dataType: 'bcs-base64'
+            },
           },
         }
-        console.log("params: ", params);
+        console.log('[sui_signAndExecuteTransaction] params: ', params);
 
-        const result = await client!.request<{ digest: string }>(params);
-        console.log('result: ', result)
+        const result = await client!.request<{ digest: string;}>(params);
+        console.log("[sui_signAndExecuteTransaction] result", result);
+
         return {
           method,
           address: address,
           valid: true,
-          result: result?.digest,
+          result: `https://suiscan.xyz/mainnet/tx/${result}`,
         };
       }
     ),
@@ -2329,10 +2327,7 @@ export function JsonRpcContextProvider({
         tx.transferObjects([coin], address);
 
         const txBase64 = toBase64(await tx.build({ client: suiClient }))
-        const result = await client!.request<{
-          signature: string;
-          transactionBytes: string;
-        }>({
+        const params = {
           topic: session!.topic,
           chainId: chainId,
           request: {
@@ -2343,8 +2338,11 @@ export function JsonRpcContextProvider({
               dataType: 'bcs-base64'
             },
           },
-        });
-        console.log("wenty result", result);
+        }
+        console.log('[sui_signTransaction] params: ', params);
+
+        const result = await client!.request<{ signature: string;}>(params);
+        console.log("[sui_signTransaction] result", result);
 
         const execResult = await suiClient.executeTransactionBlock({
           transactionBlock: txBase64,
@@ -2358,7 +2356,7 @@ export function JsonRpcContextProvider({
           method,
           address: address,
           valid: true,
-          result: execResult?.digest,
+          result: `https://suiscan.xyz/mainnet/tx/${execResult?.digest}`,
         };
       }
     ),
