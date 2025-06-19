@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "next build --env",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --check '**/*.{js,ts,jsx,tsx}'",
     "prettier:write": "prettier --write '**/*.{js,ts,jsx,tsx}'",
-    "gh": "gh-pages -d dist"
+    "gh": "pnpm build && gh-pages -d dist --nojekyll"
   },
   "dependencies": {
     "@celo/wallet-base": "^5.1.1",
